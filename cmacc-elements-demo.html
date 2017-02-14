@@ -116,13 +116,11 @@
               }
 
               var url = window.location.origin + this.file;
-              var doc = cmacc.compile(url);
+              var ast = cmacc.compile(url);
 
-              doc.person1.firstName.$$str$$ = this.data.person1.firstName;
-              doc.person1.lastName.$$str$$ = this.data.person1.lastName;
-              doc.person2.firstName.$$str$$ = this.data.person2.firstName;
-              doc.person2.lastName.$$str$$ = this.data.person2.lastName;
-
+              var data = cmacc.string(this.data);
+              var comb = cmacc.merge(ast, data);
+              var doc = cmacc.render(comb);
 
               var md = cmacc.resolve(doc);
 
